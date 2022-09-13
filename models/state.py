@@ -15,15 +15,14 @@ class State(BaseModel, Base):
     name = Column(String(128), nullable=False)
     cities = relationship('City', back_populates='state', cascade='delete')
 
-    if os.getenv('HBNB_TYPE_STORAGE') != "db":
-        @property
-        def cities(self):
-            """
-            getter for cities
-            """
-            cities = []
-            insta = storage.all(City)
-            for value in insta.values():
-                if value.state_id == self.id:
-                    cities.append(value)
-            return cities
+    @property
+    def cities(self):
+        """
+        getter for cities
+        """
+        cities = []
+        insta = storage.all(City)
+        for value in insta.values():
+            if value.state_id == self.id:
+                cities.append(value)
+        return cities
