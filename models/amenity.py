@@ -1,16 +1,14 @@
 #!/usr/bin/python3
-"""This is the amenity class"""
+""" State Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer
-from sqlalchemy.orm import relationship
-from models.place import place_amenity
+from models import storage_type
+from sqlalchemy import Column, String
 
 
 class Amenity(BaseModel, Base):
-    """This is the class for Amenity"""
-
+    '''amenity class'''
     __tablename__ = 'amenities'
-    name = Column(String(128), nullable=False)
-    place_amenities = relationship('Place',
-                                   secondary=place_amenity,
-                                   back_populates='amenities')
+    if storage_type == 'db':
+        name = Column(String(128), nullable=False)
+    else:
+        name = ""
