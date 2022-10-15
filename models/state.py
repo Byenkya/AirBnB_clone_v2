@@ -18,7 +18,7 @@ class State(BaseModel, Base):
 
     if os.getenv('HBNB_TYPE_STORAGE') != "db":
         @property
-        def all_cities(self):
+        def cities(self):
             """
             getter for cities
             """
