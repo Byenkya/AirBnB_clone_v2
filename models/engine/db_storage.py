@@ -11,7 +11,6 @@ from models.review import Review
 from models.state import State
 from models.user import User
 from os import getenv
-from sqlalchemy.sql import text
 
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     from models.place import place_amenity
@@ -53,7 +52,7 @@ class DBStorage:
                     key = obj.__class__.__name__ + '.' + obj.id
                     dct[key] = obj
         else:
-            objs = self.__session.query(text(cls)).all()
+            objs = self.__session.query(cls).all()
             for obj in objs:
                 key = obj.__class__.__name__ + '.' + obj.id
                 dct[key] = obj
