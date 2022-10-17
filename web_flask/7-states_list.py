@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""Flask app"""
+"""Starts a flask app
+    listens to 0.0.0.0:5000
+    
+"""
 
 from flask import Flask, render_template
 from models import storage
